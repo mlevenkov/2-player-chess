@@ -31,6 +31,7 @@ public class Notation
             //pawn movement
             int startFile = convertFileToIndex(notationInput.charAt(0));
             int startRank = convertFileToIndex(notationInput.charAt(1));
+            //do something with capture/nocapture?
             int endFile = convertFileToIndex(notationInput.charAt(3));
             int endRank = convertFileToIndex(notationInput.charAt(4));
 
@@ -44,6 +45,20 @@ public class Notation
         }
         else if(this.notationInput.length() == 6){
             //non-pawn movement
+            //figure out what to do with the type of piece (instanceOf is bad?)
+            int startFile = convertFileToIndex(notationInput.charAt(1));
+            int startRank = convertFileToIndex(notationInput.charAt(2));
+            //do something with capture/nocapture?
+            int endFile = convertFileToIndex(notationInput.charAt(4));
+            int endRank = convertFileToIndex(notationInput.charAt(5));
+
+            if(indexIsValid(startFile) && indexIsValid(startRank) &&
+               indexIsValid(endFile) && indexIsValid(endRank)){
+                   this.xPosStart = startFile;
+                   this.yPosStart = startRank;
+                   this.xPosEnd = endFile;
+                   this.yPosEnd = endRank;
+            }
         }
         else{
             //nothing should end up here except castling and maybe other things
