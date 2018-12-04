@@ -1,33 +1,25 @@
 
 /**
- * Write a description of class Rook here.
+ * Rook chess piece
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Michael Levenkov
+ * @version v1, December 4 2018
  */
 public class Rook
 {
-    // instance variables - replace the example below with your own
-    private int x;
-
-    /**
-     * Constructor for objects of class Rook
-     */
-    public Rook()
-    {
-        // initialise instance variables
-        x = 0;
+    public Rook(){
+        super();
     }
 
     /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * Checks to see if the move can be performed by this type of piece. 
+     * Assumes input is a valid notation (ie remains on the board).
      */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
+    public boolean moveIsValid(Notation input, Board board){
+        //check for 
+    }
+
+    public boolean moveIsObstructed(Notation input, Board board){
+
     }
 }

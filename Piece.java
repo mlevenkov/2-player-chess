@@ -9,6 +9,8 @@ public class Piece
 {
     enum color {WHITE, BLACK};
     private color color;
+    private int xPos;
+    private int yPos;
     
     public Piece(color c){
         this.color = c;
@@ -19,9 +21,11 @@ public class Piece
     }
     
     public void moveTo(Notation input, Board board){
-        if(moveIsValid(input) && !moveIsObstructed(input)){
+        if(moveIsValid(input, board) && !moveIsObstructed(input, board)){
             board.setSquare(input.getXPosStart(), input.getYPosStart(), null);
             board.setSquare(input.getXPosEnd(), input.getYPosEnd(), this);
+            this.xPos = input.getXPosEnd();
+            this.yPos = input.getYPosEnd();
         }
         else{
             System.out.println("Error: move is invalid or obstructed.");
@@ -31,13 +35,50 @@ public class Piece
     public color getColor(){
         return color;
     }
+
+    public int getXPos(){
+        return this.xPos;
+    }
     
-    private boolean moveIsValid(Notation input){
+    public int getYPos(){
+        return this.yPos;
+    }
+
+    public boolean setXPos(int in){
+        if((in >= 0) && (in <= 7)){
+            this.xPos = in;
+            return true;
+        }
+        else{
+            System.out.println("Error: invalid x position.")
+            return false;
+        }
+    }
+
+    public boolean setYPos(int in){
+        if((in >= 0) && (in <= 7)){
+            this.xPos = in;
+            return true;
+        }
+        else{
+            System.out.println("Error: invalid y position.")
+            return false;
+        }
+    }
+
+    public boolean equals(Piece otherPiece){
+        //figure this out
+    }
+    public String toString(){
+        //figure this out
+    }
+    
+    private boolean moveIsValid(Notation input, Board board){
         //will be overwritten by individual piece subclasses
         return true; //might work? needs test
     }
     
-    private boolean moveIsObstructed(Notation input){
+    private boolean moveIsObstructed(Notation input, Board board){
         //will be overwritten by individual piece subclasses
         return true; //might work? needs test
     }

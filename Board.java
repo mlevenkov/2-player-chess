@@ -27,12 +27,7 @@ public class Board
     }
 
     public void setUpBoard(){
-        Scanner setupReader = null;
-        try {
-            setupReader = new Scanner(new FileInputStream("setup.txt"));
-        } catch (FileNotFoundException e) {
-            System.out.println(e);
-        }
+        //ask dad what the best way to declare a ton of objects is
     }
     
     private boolean isOnBoard(int pos){
