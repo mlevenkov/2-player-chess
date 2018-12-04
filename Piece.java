@@ -50,7 +50,7 @@ public class Piece
             return true;
         }
         else{
-            System.out.println("Error: invalid x position.")
+            System.out.println("Error: invalid x position.");
             return false;
         }
     }
@@ -61,7 +61,7 @@ public class Piece
             return true;
         }
         else{
-            System.out.println("Error: invalid y position.")
+            System.out.println("Error: invalid y position.");
             return false;
         }
     }

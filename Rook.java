@@ -16,10 +16,25 @@ public class Rook
      * Assumes input is a valid notation (ie remains on the board).
      */
     public boolean moveIsValid(Notation input, Board board){
-        //check for 
+        int xStart = input.getXPosStart();
+        int xEnd = input.getXPosEnd();
+        int yStart = input.getYPosStart();
+        int yEnd = input.getYPosEnd();
+        
+        if( ( (yEnd < yStart) && (xEnd == xStart) ) || 
+            ( (yEnd > yStart) && (xEnd == xStart) ) ||
+            ( (xEnd < xStart) && (yEnd == yStart) ) ||
+            ( (xEnd > xStart) && (yEnd == yStart) ) ){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     public boolean moveIsObstructed(Notation input, Board board){
-
+        if(moveIsValid(input, board)){
+            
+        }
     }
 }
