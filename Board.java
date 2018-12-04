@@ -1,4 +1,6 @@
-
+import java.util.Scanner;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 /**
  * Final project for CSS 142 - The chess board
  *
@@ -21,6 +23,15 @@ public class Board
         else{
             System.err.println("Error: trying to set location outside of" + 
                 " board.");
+        }
+    }
+
+    public void setUpBoard(){
+        Scanner setupReader = null;
+        try {
+            setupReader = new Scanner(new FileInputStream("setup.txt"));
+        } catch (FileNotFoundException e) {
+            System.out.println(e);
         }
     }
     
