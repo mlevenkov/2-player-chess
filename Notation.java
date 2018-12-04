@@ -15,6 +15,10 @@ public class Notation
     private int yPosEnd;
     private Piece pieceMoved;
     private Piece pieceCaptured;
+
+    public Notation(){
+        this.notationInput = "";
+    }
     
     public Notation(String input){
         this.notationInput = input;
@@ -25,7 +29,18 @@ public class Notation
         //get start position of piece (2-3 or 1-2 if pawn)
         if(this.notationInput.length() == 5){
             //pawn movement
-            
+            int startFile = convertFileToIndex(notationInput.charAt(0));
+            int startRank = convertFileToIndex(notationInput.charAt(1));
+            int endFile = convertFileToIndex(notationInput.charAt(3));
+            int endRank = convertFileToIndex(notationInput.charAt(4));
+
+            if(indexIsValid(startFile) && indexIsValid(startRank) &&
+               indexIsValid(endFile) && indexIsValid(endRank)){
+                   this.xPosStart = startFile;
+                   this.yPosStart = startRank;
+                   this.xPosEnd = endFile;
+                   this.yPosEnd = endRank;
+            }
         }
         else if(this.notationInput.length() == 6){
             //non-pawn movement
