@@ -28,8 +28,77 @@ public class Board
         }
     }
 
+    /**
+     * UNFINISHED
+     * Returns a deep copy of the piece at the given location on the board.
+     * xPos and YPos are zero-indexed and measured from the top left of the 
+     * board.
+     * 
+     * @param xPos int, x position of piece
+     * @param yPos int, y position of piece
+     * @return a deep copy of the corresponding piece
+     */
     public Piece getPiece(int xPos, int yPos){
-        return new Piece(board[yPos][xPos]);
+        Piece currentPiece = board[yPos][xPos];
+        if(currentPiece == null){
+            return null;
+        }
+        else{
+            String name = currentPiece.getPieceName();
+            switch (name) {
+                case "rook":
+                    return new Rook(currentPiece.getColor());
+                case "knight":
+                    return null;
+                case "bishop":
+                    return null;
+                case "queen":
+                    return null;
+                case "king":
+                    return null;
+                case "pawn":
+                    return null;
+        
+                default:
+                    return null;
+            }
+        }  
+    }
+
+    /**
+     * UNFINISHED
+     * Returns a deep copy of the piece at the given location on the board.
+     * xPos and YPos are zero-indexed and measured from the top left of the 
+     * board.
+     * 
+     * @param input a valid and parsed Notation object
+     * @return a deep copy of the corresponding piece
+     */
+    public Piece getPiece(Notation input){
+        Piece currentPiece = board[input.getYPosStart()][input.getXPosStart()];
+        if(currentPiece == null){
+            return null;
+        }
+        else{
+            String name = currentPiece.getPieceName();
+            switch (name) {
+                case "rook":
+                    return new Rook(currentPiece.getColor());
+                case "knight":
+                    return null;
+                case "bishop":
+                    return null;
+                case "queen":
+                    return null;
+                case "king":
+                    return null;
+                case "pawn":
+                    return null;
+        
+                default:
+                    return null;
+            }
+        }  
     }
 
     /**
@@ -84,6 +153,9 @@ public class Board
         }
     }
     
+    /**
+     * Checks if a given int value is in the board.
+     */
     private boolean isOnBoard(int pos){
         if(pos >= 0 && pos < boardSize){
             return true;

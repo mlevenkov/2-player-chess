@@ -1,4 +1,4 @@
-
+import java.util.Scanner;
 /**
  * Final project for CSS 142 - Driver for chess playing program
  *
@@ -23,9 +23,20 @@ public class Driver
         boolean isWhiteTurn = true;
         boolean isMate = false;
         boolean isDraw = false;
+        Scanner kbd = new Scanner(System.in);
+        Notation input = new Notation();
+
         while(!isMate && !isDraw){
             if(isWhiteTurn){
                 //do white turn
+                board.printBoard();
+                System.out.println("Enter move for White:");
+                input.resetInput(kbd.next());
+                isMate = input.isGameOver();
+                isDraw = input.isDraw();
+                if(!isMate && !isDraw){
+                    board.getPiece(input).moveTo(input, board);
+                }
                 isWhiteTurn = false;
             }
             else{
@@ -34,10 +45,10 @@ public class Driver
             }
         }
         if(isMate && isWhiteTurn){
-            System.out.println("Black wins.");
-        }
-        else if(isMate && isBlackTurn){
             System.out.println("White wins.");
+        }
+        else if(isMate && !isWhiteTurn){
+            System.out.println("Black wins.");
         }
         else if(isDraw){
             System.out.println("Draw.");

@@ -23,9 +23,12 @@ public class Piece
     
     public Piece(Piece original){
         this.color = original.color;
+        this.xPos = original.xPos;
+        this.yPos = original.yPos;
+        this.pieceName = original.pieceName;
     }
     
-    public void moveTo(Notation input, Board board){
+    public boolean moveTo(Notation input, Board board){
         if(moveIsValid(input, board) && !moveIsObstructed(input, board)){
             int xStart = input.getXPosStart();
             int xEnd = input.getXPosEnd();
@@ -42,9 +45,13 @@ public class Piece
             board.setPiece(xEnd, yEnd, this);
             this.xPos = xEnd;
             this.yPos = yEnd;
+
+            return true;
         }
         else{
             System.out.println("Error: move is invalid or obstructed.");
+            System.out.println(moveIsValid(input, board) + " " + !moveIsObstructed(input, board));
+            return false;
         }
     }
     

@@ -44,9 +44,9 @@ public class Rook extends Piece
      * true.
      */
     public boolean moveIsObstructed(Notation input, Board board){
-        int xStart = input.getXPosStart();
+        int xStart = this.getXPos();
         int xEnd = input.getXPosEnd();
-        int yStart = input.getYPosStart();
+        int yStart = this.getYPos();
         int yEnd = input.getYPosEnd();
         boolean obstructed = false;
 
