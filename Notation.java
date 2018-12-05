@@ -15,6 +15,8 @@ public class Notation
     private int yPosEnd;
     private Piece pieceMoved;
     private Piece pieceCaptured;
+    private boolean isGameOver = false;
+    private boolean isDraw = false;
 
     public Notation(){
         this.notationInput = "";
@@ -28,7 +30,13 @@ public class Notation
     public void parseInput(){
         //get rank of piece (first char or none if pawn)
         //get start position of piece (2-3 or 1-2 if pawn)
-        if(this.notationInput.length() == 5){
+        if(this.notationInput.equals("#")){
+            isGameOver = true;
+        }
+        else if(this.notationInput.equals("=")){
+            isDraw = true;
+        }
+        else if(this.notationInput.length() == 5){
             //pawn movement
             int startFile = convertFileToIndex(notationInput.charAt(0));
             int startRank = convertFileToIndex(notationInput.charAt(1));
@@ -162,5 +170,9 @@ public class Notation
     
     public int getYPosEnd(){
         return this.yPosEnd;
+    }
+
+    public boolean isGameOver(){
+        return isGameOver;
     }
 }
