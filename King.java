@@ -16,7 +16,7 @@ public class King extends Piece
         this.setPieceName("king");
     }
 
-    public King(King otherking){
+    public King(King otherKing){
         if(otherKing == null){
             System.out.println("Error: cannot make copy of null King.");
         }

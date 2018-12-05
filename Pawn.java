@@ -1,33 +1,79 @@
 
 /**
- * Write a description of class Pawn here.
+ * Pawn chess piece
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Michael Levenkov
  */
-public class Pawn
+public class Pawn extends Piece
 {
-    // instance variables - replace the example below with your own
-    private int x;
-
-    /**
-     * Constructor for objects of class Pawn
-     */
-    public Pawn()
-    {
-        // initialise instance variables
-        x = 0;
+    public Pawn(){
+        super();
+        this.setPieceName("pawn");
     }
 
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
+    public Pawn(Color c){
+        super(c);
+        this.setPieceName("pawn");
+    }
+
+    public Pawn(Pawn otherPawn){
+        if(otherPawn == null){
+            System.out.println("Error: cannot make copy of null Pawn");
+        }
+        else{
+            this.setColor(otherPawn.getColor());
+            this.setPieceName(otherPawn.getPieceName());
+            this.setXPos(otherPawn.getXPos());
+            this.setYPos(otherPawn.getYPos());
+        }
+    }
+
+    public boolean moveIsValid(Notation input, Board board){
+        if(this.getColor() == Piece.Color.WHITE){
+
+        }
+        else{
+
+        }
+        return false;
+    }
+
+    public boolean moveIsObstructed(Notation input, Board board){
+        if(this.getColor() == Piece.Color.WHITE){
+
+        }
+        else{
+
+        }
+        return true;
+    }
+
+    public boolean promote(){
+        return false;
+    }
+
+    public boolean equals(Object otherObject){
+        if(otherObject == null){
+            return false;
+        }
+        else if(otherObject.getClass() != this.getClass()){
+            return false;
+        }
+        else{
+            Pawn otherPawn = (Pawn)otherObject;
+            return (otherPawn.getColor() == this.getColor() &&
+                otherPawn.getXPos() == this.getXPos() &&
+                otherPawn.getYPos() == this.getYPos() &&
+                otherPawn.getPieceName() == this.getPieceName());
+        }
+    }
+
+    public String toString(){
+        return (this.getColor() + " " + this.getPieceName() + ", located at " +
+            this.getXPos() + ", " + this.getYPos());
+    }
+
+    public static void main(String[] args) {
+        
     }
 }
