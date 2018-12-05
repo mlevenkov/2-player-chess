@@ -9,7 +9,12 @@ public class Rook extends Piece
 {
     public Rook(){
         super();
-        this.pieceName = "rook";
+        this.setPieceName("rook");
+    }
+
+    public Rook(Color c){
+        super(c);
+        this.setPieceName("rook");
     }
 
     /**

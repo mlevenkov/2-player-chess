@@ -17,6 +17,8 @@ public class Board
     }
     
     public void setPiece(int xPos, int yPos, Piece piece){
+        //we use xPos/yPos instead of rank/file because rank/file origin is 
+        //in the bottom left corner and array origin is in top left corner
         if(isOnBoard(xPos) && isOnBoard(yPos)){
             board[yPos][xPos] = piece;
         }
@@ -30,8 +32,50 @@ public class Board
         return new Piece(board[yPos][xPos]);
     }
 
+    /**
+     * Sets up board with starting position (may be replaced with file i/o 
+     * later)
+     */
     public void setUpBoard(){
-        //ask dad what the best way to declare a ton of objects is
+        board[0][0] = new Rook(Piece.Color.WHITE);
+    }
+
+    /**
+     * Prints out current board state to console
+     * UNDER CONSTRUCTION, NOT FINAL VERSION
+     */
+    public void printBoard(){
+        for(int row = 0; row < this.boardSize; row++){
+            for(int column = 0; column < this.boardSize; column++){
+                System.out.print(getLetterToPrint(board[row][column]) + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    private char getLetterToPrint(Piece piece){
+        if(piece == null){
+            return '-';
+        }
+        else{
+                String name = piece.getPieceName();
+            if(piece.getColor().toString().equals("WHITE")){
+                if(name.equals("knight")){
+                    return 'N';
+                }
+                else{
+                    return Character.toUpperCase(name.charAt(0));
+                }
+            }
+            else{
+                if(name.equals("knight")){
+                    return 'n';
+                }
+                else{
+                    return Character.toLowerCase(name.charAt(0));
+                }
+            }
+        }
     }
     
     private boolean isOnBoard(int pos){
@@ -41,5 +85,11 @@ public class Board
         else{
             return false;
         }
+    }
+
+    public static void main(String[] args){
+        Board board = new Board();
+        board.setUpBoard();
+        board.printBoard();
     }
 }
