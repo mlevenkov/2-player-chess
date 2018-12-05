@@ -1,33 +1,75 @@
 
 /**
- * Write a description of class King here.
+ * King chess piece
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Michael Levenkov
  */
-public class King
+public class King extends Piece
 {
-    // instance variables - replace the example below with your own
-    private int x;
-
-    /**
-     * Constructor for objects of class King
-     */
-    public King()
-    {
-        // initialise instance variables
-        x = 0;
+    public King(){
+        super();
+        this.setPieceName("king");
     }
 
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
+    public King(Color c){
+        super(c);
+        this.setPieceName("king");
+    }
+
+    public King(King otherKing){
+        //TODO: make copy constructor based on Rook copy constructor
+    }
+
+    public boolean moveIsValid(Notation input, Board board){
+        int xStart = input.getXPosStart();
+        int xEnd = input.getXPosEnd();
+        int yStart = input.getYPosStart();
+        int yEnd = input.getYPosEnd();
+
+        if((Math.abs(xStart - xEnd) > 1) || (Math.abs(yStart - yEnd) > 1)){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
+    public boolean moveIsObstructed(Notation input, Board board){
+        int xEnd = input.getXPosEnd();
+        int yEnd = input.getYPosEnd();
+
+        if(board.getPiece(xEnd, yEnd) != null){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public boolean equals(Object otherObject){
+        if(otherObject == null){
+            return false;
+        }
+        else if(otherObject.getClass() != this.getClass()){
+            return false;
+        }
+        else{
+            King otherKing = (King)otherObject;
+            return (otherKing.getColor() == this.getColor() &&
+                otherKing.getPieceName() == this.getPieceName() && 
+                otherKing.getXPos() == this.getXPos() && 
+                otherKing.getYPos() == this.getYPos());
+        }
+    }
+
+    public String toString(){
+        return (this.getColor() + " " + this.getPieceName() + ", located at " +
+             this.getXPos() + ", " + this.getYPos() + ".");
+    }
+
+    public static void main(String[] args){
+        Board board = new Board();
+        board.setUpBoard();
+
     }
 }

@@ -62,7 +62,7 @@ public class Board
                 case "queen":
                     return null;
                 case "king":
-                    return null;
+                    return new King(currentPiece.getColor());
                 case "pawn":
                     return null;
         
@@ -99,7 +99,7 @@ public class Board
                 case "queen":
                     return null;
                 case "king":
-                    return null;
+                    return new King(board[yPos][xPos].getColor());
                 case "pawn":
                     return null;
         
@@ -115,10 +115,12 @@ public class Board
      */
     public void setUpBoard(){
         board[0][0] = new Rook(Piece.Color.BLACK);
+        board[0][4] = new King(Piece.Color.BLACK);
 
         board[0][7] = new Rook(Piece.Color.BLACK);
 
         board[7][0] = new Rook(Piece.Color.WHITE);
+        board[7][4] = new King(Piece.Color.WHITE);
 
         board[7][7] = new Rook(Piece.Color.WHITE);
     }

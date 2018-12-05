@@ -17,6 +17,20 @@ public class Rook extends Piece
         this.setPieceName("rook");
     }
 
+    public Rook(Rook otherRook){
+        if(otherRook == null){
+            System.out.println("Error: cannot make copy of null Rook.");
+        }
+        else{
+            //TODO: ask Prof. Lin about this
+            super(otherRook.getColor());
+            this.setPieceName(otherRook.getPieceName());
+            this.setXPos(otherRook.getXPos());
+            this.setYPos(otherRook.getYPos());
+        }
+        
+    }
+
     /**
      * Checks to see if the move can be performed by this type of piece. 
      * Assumes input is a valid notation (ie remains on the board).
