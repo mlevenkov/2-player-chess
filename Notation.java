@@ -22,6 +22,7 @@ public class Notation
     
     public Notation(String input){
         this.notationInput = input;
+        parseInput();
     }
     
     public void parseInput(){
@@ -132,6 +133,12 @@ public class Notation
         }
     }
 
+    /**
+     * Checks if the given index for the Board array is within the array.
+     * 
+     * @param in int
+     * @return whether the int is a valid index for the array
+     */
     private boolean indexIsValid(int in){
         if(in >= 0 && in <= 7){
             return true;

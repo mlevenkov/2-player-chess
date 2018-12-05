@@ -16,14 +16,18 @@ public class Board
         board = new Piece[boardSize][boardSize];
     }
     
-    public void setSquare(int xPos, int yPos, Piece piece){
+    public void setPiece(int xPos, int yPos, Piece piece){
         if(isOnBoard(xPos) && isOnBoard(yPos)){
-            board[xPos][yPos] = piece;
+            board[yPos][xPos] = piece;
         }
         else{
             System.err.println("Error: trying to set location outside of" + 
                 " board.");
         }
+    }
+
+    public Piece getPiece(int xPos, int yPos){
+        return new Piece(board[yPos][xPos]);
     }
 
     public void setUpBoard(){

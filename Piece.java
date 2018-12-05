@@ -11,7 +11,12 @@ public class Piece
     private color color;
     private int xPos;
     private int yPos;
+    private String pieceName;
     
+    public Piece(){
+
+    }
+
     public Piece(color c){
         this.color = c;
     }
@@ -22,10 +27,21 @@ public class Piece
     
     public void moveTo(Notation input, Board board){
         if(moveIsValid(input, board) && !moveIsObstructed(input, board)){
-            board.setSquare(input.getXPosStart(), input.getYPosStart(), null);
-            board.setSquare(input.getXPosEnd(), input.getYPosEnd(), this);
-            this.xPos = input.getXPosEnd();
-            this.yPos = input.getYPosEnd();
+            int xStart = input.getXPosStart();
+            int xEnd = input.getXPosEnd();
+            int yStart = input.getYPosStart();
+            int yEnd = input.getYPosEnd();
+
+            if(board.getPiece(xEnd, yEnd) != null){
+                System.out.println("A " + board.getPiece(xEnd, yEnd).getColor()
+                     + " " + board.getPiece(xEnd, yEnd).getName() + " was " + 
+                     "captured by a " + this.getColor() + " " + 
+                     this.pieceName);
+            }
+            board.setPiece(xStart, yStart, null);
+            board.setPiece(xEnd, yEnd, this);
+            this.xPos = xEnd;
+            this.yPos = yEnd;
         }
         else{
             System.out.println("Error: move is invalid or obstructed.");
@@ -66,11 +82,26 @@ public class Piece
         }
     }
 
-    public boolean equals(Piece otherPiece){
-        //figure this out
+    public boolean equals(Object otherObject){
+        if(otherObject == null){
+            return false;
+        }
+        else if(this.getClass != otherObject.getClass){
+            return false;
+        }
+        else{
+            Piece otherPiece = (Piece) otherObject;
+            return((this.color == otherPiece.color) && 
+                   (this.xPos == otherPiece.xPos) && 
+                   (this.yPos == otherPiece.yPos);
+        }
     }
     public String toString(){
-        //figure this out
+        return ("Color is" + color + ", located at " + xPos + ", " + yPos);
+    }
+
+    public String getPieceName(){
+        return pieceName;
     }
     
     private boolean moveIsValid(Notation input, Board board){

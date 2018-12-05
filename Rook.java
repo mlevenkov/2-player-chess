@@ -5,10 +5,11 @@
  * @author Michael Levenkov
  * @version v1, December 4 2018
  */
-public class Rook
+public class Rook extends Piece
 {
     public Rook(){
         super();
+        this.pieceName = "rook";
     }
 
     /**
@@ -32,9 +33,58 @@ public class Rook
         }
     }
 
+    /**
+     * Checks to see if the path of the piece is obstructed by another piece. 
+     * Note that if input is not a valid notation, this method will return 
+     * true.
+     */
     public boolean moveIsObstructed(Notation input, Board board){
+        int xStart = input.getXPosStart();
+        int xEnd = input.getXPosEnd();
+        int yStart = input.getYPosStart();
+        int yEnd = input.getYPosEnd();
+        boolean obstructed = false;
+
         if(moveIsValid(input, board)){
-            
+            if((yEnd < yStart) && (xEnd == xStart)){
+                for(int i = yStart; i > yEnd; i--){
+                    if(board.getPiece(xEnd, i) != null){
+                        obstructed = true;
+                    }
+                }
+            }
+            else if((yEnd > yStart) && (xEnd == xStart)){
+                for(int i = yStart; i < yEnd; i++){
+                    if(board.getPiece(xEnd, i) != null){
+                        obstructed = true;
+                    }
+                }
+            }
+            else if((xEnd < xStart) && (yEnd == yStart)){
+                for(int i = xStart; i > xEnd; i--){
+                    if(board.getPiece(i, yEnd) != null){
+                        obstructed = true;
+                    }
+                }
+            }
+            else if((xEnd > xStart) && (yEnd == yStart)){
+                for(int i = xStart; i < xEnd; i++){
+                    if(board.getPiece(i, yEnd) != null){
+                        obstructed = true;
+                    }
+                }
+            }
         }
+        else{
+            obstructed = true;
+        }
+
+        if(board.getPiece(xEnd, yEnd) != null){
+            if(board.getPiece(xEnd, yEnd).getColor() == this.getColor()){
+                obstructed = true;
+            }
+        }
+
+        return obstructed;
     }
 }
