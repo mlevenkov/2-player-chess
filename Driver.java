@@ -35,7 +35,15 @@ public class Driver
                 isMate = input.isGameOver();
                 isDraw = input.isDraw();
                 if(!isMate && !isDraw){
-                    board.getPiece(input).moveTo(input, board);
+                    boolean moveSuccess = board.getPiece(input).moveTo(input, board);
+                    while(!moveSuccess){
+                        System.out.println("Please try again.");
+                        System.out.println("Enter move for White:");
+                        input.resetInput(kbd.next());
+                        isMate = input.isGameOver();
+                        isDraw = input.isDraw();
+                        moveSuccess = board.getPiece(input).moveTo(input, board);
+                    };
                 }
                 isWhiteTurn = false;
             }

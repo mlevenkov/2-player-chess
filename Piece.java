@@ -29,7 +29,11 @@ public class Piece
     }
     
     public boolean moveTo(Notation input, Board board){
-        if(moveIsValid(input, board) && !moveIsObstructed(input, board)){
+        if((board.getPiece(input) == null) || (this == null)){
+            System.out.println("Error: no piece at given location.");
+            return false;
+        }
+        else if(moveIsValid(input, board) && !moveIsObstructed(input, board)){
             int xStart = input.getXPosStart();
             int xEnd = input.getXPosEnd();
             int yStart = input.getYPosStart();
