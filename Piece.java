@@ -22,14 +22,19 @@ public class Piece
     }
     
     public Piece(Piece original){
-        this.color = original.color;
-        this.xPos = original.xPos;
-        this.yPos = original.yPos;
-        this.pieceName = original.pieceName;
+        if(original == null){
+            System.out.println("Error: cannot make copy of null object.");
+        }
+        else{
+            this.color = original.color;
+            this.xPos = original.xPos;
+            this.yPos = original.yPos;
+            this.pieceName = original.pieceName;
+        }
     }
     
     public boolean moveTo(Notation input, Board board){
-        if((board.getPiece(input) == null) || (this == null)){
+        if(board.getPiece(input) == null){
             System.out.println("Error: no piece at given location.");
             return false;
         }
@@ -133,5 +138,26 @@ public class Piece
     private boolean moveIsObstructed(Notation input, Board board){
         //will be overwritten by individual piece subclasses
         return true; //might work? needs test
+    }
+
+    public static void main(String[] args) {
+        Board board = new Board();
+        Notation goodNotation = new Notation("Ra1-a4");
+        Notation badNotation = new Notation("Ra2-a3");
+        board.setUpBoard();
+        board.printBoard();
+        System.out.println(board.getPiece(badNotation)); // should be null
+        if(board.getPiece(badNotation) == null){
+            System.out.println("Error: no piece at location specified" + 
+                " by badNotation"); // should print
+        }
+        if(board.getPiece(goodNotation) == null){
+            System.out.println("Error: no piece at location specified" + 
+                " by goodNotation"); // should not print
+        }
+        else{
+            board.getPiece(goodNotation).moveTo(goodNotation, board);
+        }
+        board.printBoard();
     }
 }

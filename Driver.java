@@ -18,7 +18,7 @@ public class Driver
         System.out.println("Please enter all moves in Long Algebraic " + 
             "Notation.");
         System.out.println("Use '#' by itself to indicate a checkmate");
-        System.out.println("Use '=' by intself to indicate a draw.");
+        System.out.println("Use '=' by itself to indicate a draw.");
         
         boolean isWhiteTurn = true;
         boolean isMate = false;
@@ -35,15 +35,22 @@ public class Driver
                 isMate = input.isGameOver();
                 isDraw = input.isDraw();
                 if(!isMate && !isDraw){
-                    boolean moveSuccess = board.getPiece(input).moveTo(input, board);
-                    while(!moveSuccess){
-                        System.out.println("Please try again.");
+                    while(board.getPiece(input) == null || 
+                        board.getPiece(input).moveTo(input, board) == false){
+                        if(board.getPiece(input) == null){
+                            System.out.println("Error: no piece at specified" +
+                            " location. Please try again.");
+                        }
+                        else if(
+                            board.getPiece(input).moveTo(input, board) == false){
+                            System.out.println("Please try again.");
+                        }
+                        
                         System.out.println("Enter move for White:");
                         input.resetInput(kbd.next());
                         isMate = input.isGameOver();
                         isDraw = input.isDraw();
-                        moveSuccess = board.getPiece(input).moveTo(input, board);
-                    };
+                    }
                 }
                 isWhiteTurn = false;
             }
@@ -65,5 +72,6 @@ public class Driver
             System.out.println("Unexpected outcome.");
         }
         System.out.println("Thank you for playing 2 Player Chess.");
+        kbd.close();
     }
 }

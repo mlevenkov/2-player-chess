@@ -67,7 +67,7 @@ public class Board
 
     /**
      * UNFINISHED
-     * Returns a deep copy of the piece at the given location on the board.
+     * Returns a deep copy of the piece at the start position in the notation.
      * xPos and YPos are zero-indexed and measured from the top left of the 
      * board.
      * 
@@ -75,15 +75,16 @@ public class Board
      * @return a deep copy of the corresponding piece
      */
     public Piece getPiece(Notation input){
-        Piece currentPiece = board[input.getYPosStart()][input.getXPosStart()];
-        if(currentPiece == null){
+        int xPos = input.getXPosStart();
+        int yPos = input.getYPosStart();
+        if(board[yPos][xPos] == null){
             return null;
         }
         else{
-            String name = currentPiece.getPieceName();
+            String name = board[yPos][xPos].getPieceName();
             switch (name) {
                 case "rook":
-                    return new Rook(currentPiece.getColor());
+                    return new Rook(board[yPos][xPos].getColor());
                 case "knight":
                     return null;
                 case "bishop":
@@ -169,5 +170,10 @@ public class Board
         Board board = new Board();
         board.setUpBoard();
         board.printBoard();
+        Piece test1 = board.getPiece(3, 3);
+        System.out.println(test1); //Should be null
+        Notation testNotation = new Notation("Ra2-a3");
+        Piece test2 = board.getPiece(testNotation);
+        System.out.println(test2); //Should be null
     }
 }

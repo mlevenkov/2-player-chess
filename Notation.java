@@ -13,8 +13,6 @@ public class Notation
     private int xPosEnd;
     private int yPosStart;
     private int yPosEnd;
-    private Piece pieceMoved;
-    private Piece pieceCaptured;
     private boolean isGameOver = false;
     private boolean isDraw = false;
 
