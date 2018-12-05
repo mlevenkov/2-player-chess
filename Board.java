@@ -16,6 +16,13 @@ public class Board
         board = new Piece[boardSize][boardSize];
     }
     
+    /**
+     * Sets the piece at the given location to the given piece.
+     * 
+     * @param xPos x position of location to be set
+     * @param yPos y position of location to be set
+     * @param piece piece to be placed at location
+     */
     public void setPiece(int xPos, int yPos, Piece piece){
         //we use xPos/yPos instead of rank/file because rank/file origin is 
         //in the bottom left corner and array origin is in top left corner
@@ -29,7 +36,7 @@ public class Board
     }
 
     /**
-     * UNFINISHED
+     * TODO: Add rest of pieces
      * Returns a deep copy of the piece at the given location on the board.
      * xPos and YPos are zero-indexed and measured from the top left of the 
      * board.
@@ -66,7 +73,7 @@ public class Board
     }
 
     /**
-     * UNFINISHED
+     * TODO: Add rest of pieces
      * Returns a deep copy of the piece at the start position in the notation.
      * xPos and YPos are zero-indexed and measured from the top left of the 
      * board.
@@ -117,8 +124,7 @@ public class Board
     }
 
     /**
-     * Prints out current board state to console
-     * UNDER CONSTRUCTION, NOT FINAL VERSION
+     * Prints out current board state to console.
      */
     public void printBoard(){
         for(int row = 0; row < this.boardSize; row++){
@@ -129,6 +135,38 @@ public class Board
         }
     }
 
+    public boolean equals(Object otherObject){
+        if(otherObject == null){
+            return false;
+        }
+        else if(this.getClass() != otherObject.getClass()){
+            return false;
+        }
+        else{
+            Board otherBoard = (Board)otherObject;
+            for(int row = 0; row < this.boardSize; row++){
+                for(int column = 0; column < this.boardSize; column++){
+                    if(!otherBoard.getPiece(row, column).equals(this.getPiece(row, column))){
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+    }
+
+    public String toString(){
+        //TODO: make this return Forsyth-Edwards Notation
+        return "A chess board storing some quantity of Pieces.";
+    }
+
+    /**
+     * Determines and returns the letter to print to the screen for a 
+     * particular piece.
+     * 
+     * @param piece Piece object to be displayed on screen
+     * @return corresponding char to be displayed on screen
+     */
     private char getLetterToPrint(Piece piece){
         if(piece == null){
             return '-';
@@ -156,6 +194,9 @@ public class Board
     
     /**
      * Checks if a given int value is in the board.
+     * 
+     * @param pos int value to be checked
+     * @return whether the value is in the board
      */
     private boolean isOnBoard(int pos){
         if(pos >= 0 && pos < boardSize){

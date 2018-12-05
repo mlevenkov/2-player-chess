@@ -131,13 +131,13 @@ public class Piece
     }
     
     public boolean moveIsValid(Notation input, Board board){
-        //will be overwritten by individual piece subclasses
-        return true; //might work? needs test
+        //overwritten by individual piece subclasses
+        return true;
     }
     
     public boolean moveIsObstructed(Notation input, Board board){
-        //will be overwritten by individual piece subclasses
-        return true; //might work? needs test
+        //overwritten by individual piece subclasses
+        return true;
     }
 
     public static void main(String[] args) {
