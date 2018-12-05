@@ -27,7 +27,7 @@ public class Driver
         Notation input = new Notation();
 
         while(!isMate && !isDraw){
-            if(isWhiteTurn){
+            if(isWhiteTurn){ //TODO: make it so you can't move someone else's pieces
                 //do white turn
                 board.printBoard();
                 System.out.println("Enter move for White:");
@@ -35,11 +35,16 @@ public class Driver
                 isMate = input.isGameOver();
                 isDraw = input.isDraw();
                 while((board.getPiece(input) == null || 
+                    (board.getPiece(input).getColor() == Piece.Color.BLACK) ||
                     board.getPiece(input).moveTo(input, board) == false) &&
                     !isMate && !isDraw){
                     if(board.getPiece(input) == null){
                         System.out.println("Error: no piece at specified" +
                         " location. Please try again.");
+                    }
+                    else if(board.getPiece(input).getColor() == Piece.Color.BLACK){
+                        System.out.println("Error: not your piece. Please try" + 
+                            " again");
                     }
                     else if(
                         board.getPiece(input).moveTo(input, board) == false){
@@ -61,11 +66,16 @@ public class Driver
                 isMate = input.isGameOver();
                 isDraw = input.isDraw();
                 while((board.getPiece(input) == null || 
+                    (board.getPiece(input).getColor() == Piece.Color.WHITE) ||
                     board.getPiece(input).moveTo(input, board) == false) &&
                     !isMate && !isDraw){
                     if(board.getPiece(input) == null){
                         System.out.println("Error: no piece at specified" +
                         " location. Please try again.");
+                    }
+                    else if(board.getPiece(input).getColor() == Piece.Color.WHITE){
+                        System.out.println("Error: not your piece. Please try" + 
+                            " again");
                     }
                     else if(
                         board.getPiece(input).moveTo(input, board) == false){
