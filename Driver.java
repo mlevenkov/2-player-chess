@@ -7,13 +7,16 @@ import java.util.Scanner;
  */
 public class Driver
 {
+    //TODO: Document ALL methods (including getters/setters, equals, and toString)
+    //TODO: Better header comments for classes
+    //TODO: Add inline comments to long methods
     public static void main(String[] args){
         Board board = new Board();
         board.setUpBoard();
 
         System.out.println("Welcome to 2 Player Chess!");
         System.out.println("The following elements of traditional chess " + 
-            "are not implemented: castling, en passant, automatic checking" + 
+            "are not implemented: castling, en passant, automatic checking " + 
             "of checks and checkmates.");
         System.out.println("Please enter all moves in Long Algebraic " + 
             "Notation.");

@@ -16,8 +16,17 @@ public class King extends Piece
         this.setPieceName("king");
     }
 
-    public King(King otherKing){
-        //TODO: make copy constructor based on Rook copy constructor
+    public King(King otherking){
+        if(otherKing == null){
+            System.out.println("Error: cannot make copy of null King.");
+        }
+        else{
+            this.setColor(otherKing.getColor());
+            this.setPieceName(otherKing.getPieceName());
+            this.setXPos(otherKing.getXPos());
+            this.setYPos(otherKing.getYPos());
+        }
+        
     }
 
     public boolean moveIsValid(Notation input, Board board){

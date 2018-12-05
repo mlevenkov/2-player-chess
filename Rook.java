@@ -7,23 +7,35 @@
  */
 public class Rook extends Piece
 {
+    /**
+     * Constructs a Rook object
+     */
     public Rook(){
         super();
         this.setPieceName("rook");
     }
 
+    /**
+     * Constructs a Rook object of the given color
+     * 
+     * @param c Color, either BLACK or WHITE
+     */
     public Rook(Color c){
         super(c);
         this.setPieceName("rook");
     }
 
+    /**
+     * Constructs a copy of the otherRook
+     * 
+     * @param otherRook Rook to be copied
+     */
     public Rook(Rook otherRook){
         if(otherRook == null){
             System.out.println("Error: cannot make copy of null Rook.");
         }
         else{
-            //TODO: ask Prof. Lin about this
-            super(otherRook.getColor());
+            this.setColor(otherRook.getColor());
             this.setPieceName(otherRook.getPieceName());
             this.setXPos(otherRook.getXPos());
             this.setYPos(otherRook.getYPos());
@@ -33,9 +45,10 @@ public class Rook extends Piece
 
     /**
      * Checks to see if the move can be performed by this type of piece. 
-     * Assumes input is a valid notation (ie remains on the board).
+     * Assumes input is a valid parsed notation (ie remains on the board).
+     * Rooks can move only up, down, left or right.
      * 
-     * @param input Notation for current move
+     * @param input parsed Notation for current move
      * @param board Board for moving on
      * @return whether this piece can legally make this move
      */
@@ -61,7 +74,7 @@ public class Rook extends Piece
      * Note that if input is not a valid notation, this method will return 
      * true.
      * 
-     * @param input Notation for current move
+     * @param input parsed Notation for current move
      * @param board Board for moving on
      * @return whether the move is obstructed or not
      */
@@ -73,28 +86,28 @@ public class Rook extends Piece
         boolean obstructed = false;
 
         if(moveIsValid(input, board)){
-            if((yEnd < yStart) && (xEnd == xStart)){
+            if((yEnd < yStart) && (xEnd == xStart)){ //move down 
                 for(int i = yStart - 1; i > yEnd; i--){
                     if(board.getPiece(xEnd, i) != null){
                         obstructed = true;
                     }
                 }
             }
-            else if((yEnd > yStart) && (xEnd == xStart)){
+            else if((yEnd > yStart) && (xEnd == xStart)){ //move up
                 for(int i = yStart + 1; i < yEnd; i++){
                     if(board.getPiece(xEnd, i) != null){
                         obstructed = true;
                     }
                 }
             }
-            else if((xEnd < xStart) && (yEnd == yStart)){
+            else if((xEnd < xStart) && (yEnd == yStart)){ //move left
                 for(int i = xStart - 1; i > xEnd; i--){
                     if(board.getPiece(i, yEnd) != null){
                         obstructed = true;
                     }
                 }
             }
-            else if((xEnd > xStart) && (yEnd == yStart)){
+            else if((xEnd > xStart) && (yEnd == yStart)){ //move right
                 for(int i = xStart + 1; i < xEnd; i++){
                     if(board.getPiece(i, yEnd) != null){
                         obstructed = true;
@@ -106,6 +119,7 @@ public class Rook extends Piece
             obstructed = true;
         }
 
+        //check if end location is occupied by friendly piece
         if(board.getPiece(xEnd, yEnd) != null && 
             (board.getPiece(xEnd, yEnd).getColor() == this.getColor())){
             obstructed = true;
@@ -114,6 +128,12 @@ public class Rook extends Piece
         return obstructed;
     }
 
+    /**
+     * Checks if otherObject is equal to this Rook.
+     * 
+     * @param otherObject Object to be checked
+     * @return whether otherObject is equal to this Rook
+     */
     public boolean equals(Object otherObject){
         if(otherObject == null){
             return false;
@@ -130,8 +150,13 @@ public class Rook extends Piece
         }
     }
 
+    /**
+     * Returns string describing this Rook
+     * 
+     * @return String describing this Rook
+     */
     public String toString(){
-        return ("Rook, color is" + this.getColor() + ", located at " + 
+        return (this.getColor() + " " + this.getPieceName() + ", located at " +
             this.getXPos() + ", " + this.getYPos());
     }
 

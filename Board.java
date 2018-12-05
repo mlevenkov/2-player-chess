@@ -1,6 +1,4 @@
-import java.util.Scanner;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+
 /**
  * Final project for CSS 142 - The chess board
  *
