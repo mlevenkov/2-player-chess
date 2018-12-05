@@ -59,7 +59,7 @@ public class Piece
         }
         else{
             System.out.println("Error: move is invalid or obstructed.");
-            System.out.println(moveIsValid(input, board) + " " + !moveIsObstructed(input, board));
+            //System.out.println(moveIsValid(input, board) + " " + !moveIsObstructed(input, board));
             return false;
         }
     }
@@ -130,12 +130,12 @@ public class Piece
         return ("Color is" + color + ", located at " + xPos + ", " + yPos);
     }
     
-    private boolean moveIsValid(Notation input, Board board){
+    public boolean moveIsValid(Notation input, Board board){
         //will be overwritten by individual piece subclasses
         return true; //might work? needs test
     }
     
-    private boolean moveIsObstructed(Notation input, Board board){
+    public boolean moveIsObstructed(Notation input, Board board){
         //will be overwritten by individual piece subclasses
         return true; //might work? needs test
     }

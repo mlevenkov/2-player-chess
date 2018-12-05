@@ -34,28 +34,49 @@ public class Driver
                 input.resetInput(kbd.next());
                 isMate = input.isGameOver();
                 isDraw = input.isDraw();
-                if(!isMate && !isDraw){
-                    while(board.getPiece(input) == null || 
-                        board.getPiece(input).moveTo(input, board) == false){
-                        if(board.getPiece(input) == null){
-                            System.out.println("Error: no piece at specified" +
-                            " location. Please try again.");
-                        }
-                        else if(
-                            board.getPiece(input).moveTo(input, board) == false){
-                            System.out.println("Please try again.");
-                        }
-                        
-                        System.out.println("Enter move for White:");
-                        input.resetInput(kbd.next());
-                        isMate = input.isGameOver();
-                        isDraw = input.isDraw();
+                while((board.getPiece(input) == null || 
+                    board.getPiece(input).moveTo(input, board) == false) &&
+                    !isMate && !isDraw){
+                    if(board.getPiece(input) == null){
+                        System.out.println("Error: no piece at specified" +
+                        " location. Please try again.");
                     }
+                    else if(
+                        board.getPiece(input).moveTo(input, board) == false){
+                        System.out.println("Please try again.");
+                    }
+                    
+                    System.out.println("Enter move for White:");
+                    input.resetInput(kbd.next());
+                    isMate = input.isGameOver();
+                    isDraw = input.isDraw();
                 }
                 isWhiteTurn = false;
             }
             else{
                 //do black turn
+                board.printBoard();
+                System.out.println("Enter move for Black:");
+                input.resetInput(kbd.next());
+                isMate = input.isGameOver();
+                isDraw = input.isDraw();
+                while((board.getPiece(input) == null || 
+                    board.getPiece(input).moveTo(input, board) == false) &&
+                    !isMate && !isDraw){
+                    if(board.getPiece(input) == null){
+                        System.out.println("Error: no piece at specified" +
+                        " location. Please try again.");
+                    }
+                    else if(
+                        board.getPiece(input).moveTo(input, board) == false){
+                        System.out.println("Please try again.");
+                    }
+                    
+                    System.out.println("Enter move for Black:");
+                    input.resetInput(kbd.next());
+                    isMate = input.isGameOver();
+                    isDraw = input.isDraw();
+                }
                 isWhiteTurn = true;
             }
         }

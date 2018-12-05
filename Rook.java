@@ -52,28 +52,28 @@ public class Rook extends Piece
 
         if(moveIsValid(input, board)){
             if((yEnd < yStart) && (xEnd == xStart)){
-                for(int i = yStart; i > yEnd; i--){
+                for(int i = yStart - 1; i > yEnd; i--){
                     if(board.getPiece(xEnd, i) != null){
                         obstructed = true;
                     }
                 }
             }
             else if((yEnd > yStart) && (xEnd == xStart)){
-                for(int i = yStart; i < yEnd; i++){
+                for(int i = yStart + 1; i < yEnd; i++){
                     if(board.getPiece(xEnd, i) != null){
                         obstructed = true;
                     }
                 }
             }
             else if((xEnd < xStart) && (yEnd == yStart)){
-                for(int i = xStart; i > xEnd; i--){
+                for(int i = xStart - 1; i > xEnd; i--){
                     if(board.getPiece(i, yEnd) != null){
                         obstructed = true;
                     }
                 }
             }
             else if((xEnd > xStart) && (yEnd == yStart)){
-                for(int i = xStart; i < xEnd; i++){
+                for(int i = xStart + 1; i < xEnd; i++){
                     if(board.getPiece(i, yEnd) != null){
                         obstructed = true;
                     }
@@ -84,12 +84,28 @@ public class Rook extends Piece
             obstructed = true;
         }
 
-        if(board.getPiece(xEnd, yEnd) != null){
-            if(board.getPiece(xEnd, yEnd).getColor() == this.getColor()){
-                obstructed = true;
-            }
+        if(board.getPiece(xEnd, yEnd) != null && 
+            (board.getPiece(xEnd, yEnd).getColor() == this.getColor())){
+            obstructed = true;
         }
 
         return obstructed;
+    }
+
+    public static void main(String[] args) {
+        Board board = new Board();
+        Notation not1 = new Notation("Ra1-a4");
+        Notation not2 = new Notation("Ra1-d1");
+        Notation not3 = new Notation("rh8-h5");
+        Notation not4 = new Notation("rh8-e8");
+
+        board.setUpBoard();
+        System.out.println(board.getPiece(not1).moveTo(not1, board));
+        //System.out.println(board.getPiece(not2).moveTo(not2, board));
+        System.out.println(board.getPiece(not3).moveTo(not3, board));
+        //System.out.println(board.getPiece(not4).moveTo(not4, board));
+        board.printBoard();
+        
+
     }
 }
