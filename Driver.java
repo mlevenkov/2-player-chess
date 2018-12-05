@@ -27,7 +27,7 @@ public class Driver
         Notation input = new Notation();
 
         while(!isMate && !isDraw){
-            if(isWhiteTurn){ //TODO: make it so you can't move someone else's pieces
+            if(isWhiteTurn){
                 //do white turn
                 board.printBoard();
                 System.out.println("Enter move for White:");
