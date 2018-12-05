@@ -37,7 +37,13 @@ public class Board
      * later)
      */
     public void setUpBoard(){
-        board[0][0] = new Rook(Piece.Color.WHITE);
+        board[0][0] = new Rook(Piece.Color.BLACK);
+
+        board[0][7] = new Rook(Piece.Color.BLACK);
+
+        board[7][0] = new Rook(Piece.Color.WHITE);
+
+        board[7][7] = new Rook(Piece.Color.WHITE);
     }
 
     /**
