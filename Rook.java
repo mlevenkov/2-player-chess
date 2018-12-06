@@ -26,7 +26,7 @@ public class Rook extends Piece
     }
 
     /**
-     * Constructs a copy of the otherRook
+     * Constructs a deep copy of the otherRook
      * 
      * @param otherRook Rook to be copied
      */
