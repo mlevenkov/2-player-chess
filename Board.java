@@ -52,7 +52,7 @@ public class Board
             String name = currentPiece.getPieceName();
             switch (name) {
                 case "rook":
-                    return new Rook(currentPiece);
+                    return new Rook((Rook) currentPiece);
                 case "knight":
                     return null;
                 case "bishop":
@@ -60,7 +60,7 @@ public class Board
                 case "queen":
                     return null;
                 case "king":
-                    return new King(currentPiece);
+                    return new King((King) currentPiece);
                 case "pawn":
                     return null;
         
@@ -89,7 +89,7 @@ public class Board
             String name = board[yPos][xPos].getPieceName();
             switch (name) {
                 case "rook":
-                    return new Rook(board[yPos][xPos]);
+                    return new Rook((Rook) board[yPos][xPos]);
                 case "knight":
                     return null;
                 case "bishop":
@@ -97,7 +97,7 @@ public class Board
                 case "queen":
                     return null;
                 case "king":
-                    return new King(board[yPos][xPos]);
+                    return new King((King) board[yPos][xPos]);
                 case "pawn":
                     return null;
         

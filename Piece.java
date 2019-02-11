@@ -5,7 +5,7 @@
  * @author Michael Levenkov
  * @version v1, November 30 2018
  */
-public class Piece
+public abstract class Piece
 {
     public static enum Color {WHITE, BLACK}; //used throughout program
     private Color color;
@@ -102,7 +102,7 @@ public class Piece
      * @return enum, either BLACK or WHITE
      */
     public Color getColor(){
-        return color;
+        return this.color;
     }
 
     /**
@@ -130,7 +130,7 @@ public class Piece
      * subclass
      */
     public String getPieceName(){
-        return pieceName;
+        return this.pieceName;
     }
 
     /**
@@ -231,9 +231,7 @@ public class Piece
      * @param board Board for moving on
      * @return false
      */
-    public boolean moveIsValid(Notation input, Board board){
-        return false;
-    }
+    public abstract boolean moveIsValid(Notation input, Board board);
     
     /**
      * Dummy method, is overwritten by subclass methods
@@ -242,9 +240,7 @@ public class Piece
      * @param board Board for moving on
      * @return true
      */
-    public boolean moveIsObstructed(Notation input, Board board){
-        return true;
-    }
+    public abstract boolean moveIsObstructed(Notation input, Board board);
 
     public static void main(String[] args) {
         Board board = new Board();
