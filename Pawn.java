@@ -34,7 +34,7 @@ public class Pawn extends Piece
         int yStart = input.getYPosStart();
         int yEnd = input.getYPosEnd();
 
-        if(this.getColor() == Piece.Color.WHITE){ //white pawns move upwards
+        if(this.getColor() == Color.WHITE){ //white pawns move upwards
             if(yStart == 6 && xStart == xEnd && (yStart - yEnd) <= 2 && 
                 (yStart-yEnd) > 0){ //move from starting position
                     return true;
@@ -76,9 +76,11 @@ public class Pawn extends Piece
             }
         }
     }
-
+    //TODO Pawn moveIsObstructed
     public boolean moveIsObstructed(Notation input, Board board){
-        if(moveIsValid(input, board)){
+        return true;
+        
+        /*if(moveIsValid(input, board)){
             int xStart = input.getXPosStart();
             int xEnd = input.getXPosEnd();
             int yStart = input.getYPosStart();
@@ -141,7 +143,7 @@ public class Pawn extends Piece
         }
         else{
             return true;
-        }
+        }*/
     }
 
     //TODO Figure out promotion

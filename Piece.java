@@ -5,9 +5,8 @@
  * @author Michael Levenkov
  * @version v1, November 30 2018
  */
-public abstract class Piece
+public abstract class Piece implements PieceColor
 {
-    public static enum Color {WHITE, BLACK}; //used throughout program
     private Color color;
     private int xPos; //between 0 and 7 inclusive
     private int yPos; //between 0 and 7 inclusive

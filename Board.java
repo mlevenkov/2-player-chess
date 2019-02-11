@@ -5,7 +5,7 @@
  * @author Michael Levenkov
  * @version v1, November 30 2018
  */
-public class Board
+public class Board implements PieceColor
 {
     private Piece[][] board;
     private final int boardSize = 8;
@@ -112,15 +112,15 @@ public class Board
      * later)
      */
     public void setUpBoard(){
-        board[0][0] = new Rook(Piece.Color.BLACK);
-        board[0][4] = new King(Piece.Color.BLACK);
+        board[0][0] = new Rook(Color.BLACK);
+        board[0][4] = new King(Color.BLACK);
 
-        board[0][7] = new Rook(Piece.Color.BLACK);
+        board[0][7] = new Rook(Color.BLACK);
 
-        board[7][0] = new Rook(Piece.Color.WHITE);
-        board[7][4] = new King(Piece.Color.WHITE);
+        board[7][0] = new Rook(Color.WHITE);
+        board[7][4] = new King(Color.WHITE);
 
-        board[7][7] = new Rook(Piece.Color.WHITE);
+        board[7][7] = new Rook(Color.WHITE);
     }
 
     /**
@@ -173,7 +173,7 @@ public class Board
         }
         else{
                 String name = piece.getPieceName();
-            if(piece.getColor().toString().equals("WHITE")){
+            if(piece.getColor() == Color.WHITE){
                 if(name.equals("knight")){
                     return 'N';
                 }
